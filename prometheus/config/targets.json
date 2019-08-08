@@ -1,0 +1,17 @@
+[
+{
+"targets": [
+"angela",
+"hitagi",
+"yukari"
+],
+
+"labels":{
+"hostname": "localhost",
+"node_exporter_port": "9100",
+"ipmi_exporter_port": "9289",
+"blackbox_exporter_port": "9115",
+"temperature_exporter_port": "8999"
+}
+}
+]

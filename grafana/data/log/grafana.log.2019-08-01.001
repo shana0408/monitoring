@@ -1,0 +1,7 @@
+t=2019-07-30T08:00:01-0400 lvl=info msg="New state change" logger=alerting.resultHandler alertId=1 newState=alerting prev state=ok
+t=2019-07-30T08:00:01-0400 lvl=info msg=Rendering logger=rendering path="d-solo/O3sTY6ZRz/machine-details?panelId=11"
+t=2019-07-30T08:00:03-0400 lvl=info msg="Sending telegram notification" logger=alerting.notifier.telegram chat_id=359773791 bot_token=664156539:AAFAlR26XBRqKsXJrv1ToMkz3gM2Y7lZFF4 apiAction=sendPhoto
+t=2019-07-30T08:05:01-0400 lvl=info msg="New state change" logger=alerting.resultHandler alertId=1 newState=ok prev state=alerting
+t=2019-07-30T08:05:01-0400 lvl=info msg=Rendering logger=rendering path="d-solo/O3sTY6ZRz/machine-details?panelId=11"
+t=2019-07-30T08:05:03-0400 lvl=info msg="Sending telegram notification" logger=alerting.notifier.telegram chat_id=359773791 bot_token=664156539:AAFAlR26XBRqKsXJrv1ToMkz3gM2Y7lZFF4 apiAction=sendPhoto
+t=2019-07-30T12:22:05-0400 lvl=info msg="Request Completed" logger=context userId=0 orgId=0 uname= method=GET path=/ status=302 remote_addr=192.168.1.129 time_ms=8 size=29 referer=

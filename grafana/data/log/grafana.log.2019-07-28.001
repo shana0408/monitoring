@@ -1,0 +1,4 @@
+t=2019-07-27T03:00:52-0400 lvl=info msg="Database table locked, sleeping then retrying" logger=sqlstore retry=0
+t=2019-07-27T08:22:02-0400 lvl=info msg="Request Completed" logger=context userId=0 orgId=0 uname= method=GET path=/ status=302 remote_addr=192.168.1.129 time_ms=7 size=29 referer=
+t=2019-07-27T10:04:28-0400 lvl=info msg="Request Completed" logger=context userId=0 orgId=0 uname= method=GET path=/ status=302 remote_addr=192.168.1.129 time_ms=2 size=29 referer=
+t=2019-07-27T23:00:52-0400 lvl=info msg="Database table locked, sleeping then retrying" logger=sqlstore retry=0

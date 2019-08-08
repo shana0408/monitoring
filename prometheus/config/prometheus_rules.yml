@@ -1,0 +1,107 @@
+groups:
+  - name: recording_rules
+    rules:
+        #record [name:action:unit]
+      - record: cpu_load:average:load_percents
+        expr: 100*  sum(1- avg by(hostname)(irate(node_cpu{mode='idle'}[10m]))) / sum(probe_success)
+
+      - record: total_cpu_core:average:number
+        expr: count(node_cpu)
+
+      - record: cpu_load_1_min:average:number
+        expr: sum(node_load1)
+
+      - record: cpu_load_5_min:average:number
+        expr: sum(node_load5)
+
+      - record: cpu_load_15_min:average:number
+        expr: sum(node_load15)
+
+      - record: total_memory:sum:bytes
+        expr: sum(node_memory_MemTotal)
+
+      - record: free_memory:sum:bytes
+        expr: sum(node_memory_MemFree)
+
+      - record: cache_memory:sum:bytes
+        expr: sum(node_memory_Cached)
+
+      - record: buffer_memory:sum:bytes
+        expr: sum(node_memory_Buffers)
+
+      - record: total_swap:sum:bytes
+        expr: sum(node_memory_SwapTotal) 
+
+      - record: free_swap:sum:bytes
+        expr: sum(node_memory_SwapFree)
+
+      - record: network_rx:sum:bps
+        expr: sum(irate(node_network_receive_bytes{device!~"lo|bond[0-9]"}[10m]))
+
+      - record: network_tx:sum:bps
+        expr: sum(irate(node_network_transmit_bytes{device!~"lo|bond[0-9]"}[10m]))
+
+
+      - record: swap_usage_per_host:average:percents
+        expr: avg by (hostname)(100* (node_memory_SwapTotal -node_memory_SwapFree) /node_memory_SwapTotal)
+
+      - record: cpu_load_per_host:average:percents
+        expr: 100 * (1 - avg by(hostname)(irate(node_cpu{mode='idle'}[10m])))
+
+      - record: memory_usage_per_host:average:percents
+        expr: avg by (hostname)(100* (node_memory_MemTotal - node_memory_MemFree)/node_memory_MemTotal)
+
+      - record: cpu_system_load_per_host:average:percents
+        expr: (avg by (hostname) (rate(node_cpu{mode="system"}[10m])) * 100)
+
+      - record: cpu_user_load_per_host:average:percents
+        expr: (avg by (hostname) (rate(node_cpu{mode="user"}[10m])) * 100)
+
+      - record: cpu_iowait_load_per_host:average:percents
+        expr: (avg by (hostname) (rate(node_cpu{mode="iowait"}[10m])) * 100)
+
+      - record: cpu_steal_load_per_host:average:percents
+        expr: (avg by (hostname) (rate(node_cpu{mode="steal"}[10m])) * 100)
+
+      - record: cpu_nice_load_per_host:average:percents
+        expr: (avg by (hostname) (rate(node_cpu{mode="nice"}[10m])) * 100)
+
+      - record: cpu_idle_load_per_host:average:percents
+        expr: (avg by (hostname) (rate(node_cpu{mode="idle"}[10m])) * 100)
+
+      - record: total_cpu_system_load:average:percents
+        expr: avg(cpu_system_load_per_host:average:percents)
+
+      - record: total_cpu_user_load:average:percents
+        expr: avg(cpu_user_load_per_host:average:percents)
+
+      - record: total_cpu_iowait_load:average:percents
+        expr: avg(cpu_iowait_load_per_host:average:percents)
+
+      - record: total_cpu_steal_load:average:percents
+        expr: avg(cpu_steal_load_per_host:average:percents)
+
+      - record: total_cpu_nice_load:average:percents
+        expr: avg(cpu_nice_load_per_host:average:percents)
+
+      - record: total_cpu_idle_load:average:percents
+        expr: avg(cpu_idle_load_per_host:average:percents)
+
+      - record: network_rx_per_host:average:bps
+        expr: (sum by(hostname) (irate(node_network_receive_bytes{device!~"lo|bond[0-9]"}[10m])))
+
+      - record: network_tx_per_host:average:bps
+        expr: (sum by(hostname) (irate(node_network_transmit_bytes{device!~"lo|bond[0-9]"}[10m])))
+
+      - record: incoming_temperature_per_host:average:celsuis
+        expr: avg by (hostname)(ipmi_inlet_temp)
+
+      - record: outgoing_temperature_per_host:average:celsuis
+        expr: avg by (hostname)(ipmi_outlet_temp)
+
+      - record: disk_usage_per_host:average:percents
+        expr: avg by (hostname)(100* (node_filesystem_size{fstype="ext4",mountpoint="/"} - node_filesystem_avail{fstype="ext4",mountpoint="/"}) /node_filesystem_size{fstype="ext4",mountpoint="/"})
+
+      - record: linux_version_per_host:average:number
+        expr: (sum by (release)(node_uname_info))
+
